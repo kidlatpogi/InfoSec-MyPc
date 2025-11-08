@@ -1,0 +1,169 @@
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="logo" href="/">MyPC</a>
+        <nav class="main-nav">
+            <a href="/shop">Shop</a>
+            <div id="auth-nav" style="display:flex;gap:1rem;align-items:center;">
+                <a href="/login" id="login-link">Login</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main class="container admin-container">
+    <div class="admin-header">
+        <h1>Admin Dashboard</h1>
+        <p id="admin-welcome">Welcome, Admin</p>
+    </div>
+
+    <div class="admin-tabs">
+        <button class="tab-btn active" data-tab="users">👥 Manage Users</button>
+        <button class="tab-btn" data-tab="products">📦 Manage Products</button>
+    </div>
+
+    <!-- Users Management Tab -->
+    <div id="users-tab" class="tab-content active">
+        <div class="tab-header">
+            <h2>Users Management</h2>
+            <button id="add-user-btn" class="primary">+ Add New User</button>
+        </div>
+
+        <div class="search-filter">
+            <input type="text" id="user-search" placeholder="Search users by email or name...">
+        </div>
+
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="users-tbody">
+                    <tr><td colspan="6" style="text-align:center;padding:2rem">Loading users...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Products Management Tab -->
+    <div id="products-tab" class="tab-content">
+        <div class="tab-header">
+            <h2>Products Management</h2>
+            <button id="add-product-btn" class="primary">+ Add New Product</button>
+        </div>
+
+        <div class="search-filter">
+            <input type="text" id="product-search" placeholder="Search products by name or category...">
+        </div>
+
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Variants</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="products-tbody">
+                    <tr><td colspan="6" style="text-align:center;padding:2rem">Loading products...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<!-- Add/Edit User Modal -->
+<div id="user-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="user-modal-title">Add New User</h2>
+            <button class="modal-close">&times;</button>
+        </div>
+        <form id="user-form" novalidate>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="user-email" required>
+            </div>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="user-name" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="user-password" placeholder="Leave empty to keep current">
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="user-is-admin"> Admin User
+                </label>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="secondary" data-action="cancel">Cancel</button>
+                <button type="submit" class="primary">Save User</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Add/Edit Product Modal -->
+<div id="product-modal" class="modal">
+    <div class="modal-content modal-large">
+        <div class="modal-header">
+            <h2 id="product-modal-title">Add New Product</h2>
+            <button class="modal-close">&times;</button>
+        </div>
+        <form id="product-form" novalidate>
+            <div class="form-group">
+                <label>Product Title</label>
+                <input type="text" id="product-title" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" id="product-category" placeholder="CPU, GPU, RAM..." required>
+                </div>
+                <div class="form-group">
+                    <label>Price (₱)</label>
+                    <input type="number" id="product-price" min="0" step="100" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Variants (JSON format)</label>
+                <textarea id="product-variants" placeholder='[{"label":"Standard","priceDelta":0}]' rows="3"></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="secondary" data-action="cancel">Cancel</button>
+                <button type="submit" class="primary">Save Product</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Confirm Delete Modal -->
+<div id="confirm-modal" class="modal">
+    <div class="modal-content modal-small">
+        <div class="modal-header">
+            <h2>Confirm Delete</h2>
+            <button class="modal-close">&times;</button>
+        </div>
+        <p id="confirm-message">Are you sure you want to delete this item?</p>
+        <div class="form-actions">
+            <button type="button" class="secondary" data-action="cancel">Cancel</button>
+            <button type="button" id="confirm-delete-btn" class="danger">Delete</button>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="container">© 2024 MyPC — Premium PC Component Store. All rights reserved.</div>
+</footer>

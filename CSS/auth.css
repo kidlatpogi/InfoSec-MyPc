@@ -1,0 +1,37 @@
+/* Auth Forms - Login & Signup */
+
+.auth-panel{max-width:420px;margin:3rem auto;padding:2rem;background:var(--card);border-radius:12px;border:1px solid var(--border);box-shadow:0 4px 16px rgba(0,0,0,0.08);animation:slideInUp 0.5s ease-out}
+
+.auth-panel h2{color:var(--accent);margin:0 0 1.5rem 0;font-size:1.4rem;text-align:center}
+
+.auth-panel label{color:var(--text);font-size:0.95rem;font-weight:500;display:block;margin-top:1rem}
+
+.auth-panel input{width:100%;padding:0.8rem 1rem;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);margin-top:0.4rem;font-size:0.95rem;transition:var(--transition)}
+
+.auth-panel input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,0,0,0.05)}
+
+.auth-panel button{width:100%;padding:0.9rem;margin-top:1.5rem;font-size:1rem}
+
+.error{color:#d32f2f;font-size:0.85rem;margin-top:0.3rem;animation:slideInLeft 0.3s ease-out}
+
+.auth-panel p{text-align:center;color:var(--text-light);margin:1.5rem 0 0 0}
+
+.auth-panel a{color:var(--accent);text-decoration:none;font-weight:600;transition:var(--transition)}
+
+.auth-panel a:hover{text-decoration:underline}
+
+/* Tablet responsive */
+@media (max-width:768px){
+  .auth-panel{margin:2rem 1rem;padding:1.5rem}
+  .auth-panel h2{font-size:1.2rem}
+}
+
+/* Mobile responsive */
+@media (max-width:480px){
+  .auth-panel{max-width:100%;margin:1.5rem 0.75rem;padding:1.2rem}
+  .auth-panel h2{font-size:1.1rem;margin-bottom:1rem}
+  .auth-panel label{font-size:0.9rem}
+  .auth-panel input{padding:0.7rem;font-size:0.9rem}
+  .auth-panel button{padding:0.8rem;margin-top:1rem}
+  .auth-panel p{font-size:0.9rem;margin-top:1rem}
+}

@@ -1,0 +1,53 @@
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="logo" href="/">MyPC</a>
+        <nav class="main-nav">
+            <a href="/shop">Shop</a>
+            <div id="auth-nav" style="display:flex;gap:1rem;align-items:center;">
+                <a href="/login" id="login-link">Login</a>
+            </div>
+            <button id="cart-toggle" class="cart-btn">Cart (<span id="cart-count">0</span>)</button>
+        </nav>
+    </div>
+</header>
+
+    <main class="container">
+        <section class="search-row">
+            <input id="search-input" type="search" placeholder="Search GPU, CPU, RAM..." />
+            <div class="controls">
+                <select id="category-filter">
+                    <option value="">All categories</option>
+                </select>
+                <select id="sort-select" class="variant-select">
+                    <option value="relevance">Sort: Relevance</option>
+                    <option value="price-asc">Price: Low → High</option>
+                    <option value="price-desc">Price: High → Low</option>
+                    <option value="alpha">Name: A → Z</option>
+                </select>
+            </div>
+        </section>
+
+        <section id="product-grid" class="product-grid">
+            <!-- Products injected by JS -->
+        </section>
+
+        <div class="pagination" id="pagination"></div>
+    </main>
+
+    <!-- Cart drawer backdrop -->
+    <div id="cart-backdrop" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);opacity:0;pointer-events:none;transition:opacity 0.3s ease;z-index:50"></div>
+
+    <!-- Cart drawer (slide-in) -->
+    <aside id="cart-drawer" class="cart-drawer" aria-hidden="true">
+        <button id="close-cart" class="close-cart">×</button>
+        <h2>Your Cart</h2>
+        <div id="cart-items" class="cart-items"></div>
+        <div class="cart-footer">
+            <div>Total: <strong id="cart-total">₱0</strong></div>
+            <button id="checkout-btn" class="primary">Checkout</button>
+        </div>
+    </aside>
+
+    <footer class="site-footer">
+        <div class="container">© MyPC — Premium PC Component Store</div>
+    </footer>
