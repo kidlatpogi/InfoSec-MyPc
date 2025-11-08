@@ -24,6 +24,17 @@ class Router {
     }
     
     init() {
+        // Check if redirected from 404.html (GitHub Pages SPA routing)
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectPath = urlParams.get('redirect');
+        
+        if (redirectPath) {
+            // Clean the URL and navigate to the redirect path
+            window.history.replaceState({}, '', redirectPath);
+            this.route(redirectPath);
+            return;
+        }
+        
         // Remove trailing slash for clean URLs
         let path = window.location.pathname;
         if (path.endsWith('/index.html')) {

@@ -68,11 +68,11 @@ input,select{font-family:inherit}
   .product .actions{gap:0.4rem}
 }
 
-/* Mobile: 4 columns */
+/* Mobile: 2 columns */
 @media (max-width:480px){
-  .product-grid{grid-template-columns:repeat(4,1fr);gap:0.75rem}
+  .product-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem}
   .product{padding:0.75rem}
-  .product h3{font-size:0.85rem}
+  .product h3{font-size:0.95rem}
   .product .price{font-size:0.9rem}
   .product img{height:100px;padding:6px}
   .search-row{margin:1rem 0}
