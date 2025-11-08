@@ -29,6 +29,13 @@ jobs:
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
+          # The action will use a personal access token (GH_PAGES_PAT) if you add it to repo Secrets.
+          # If you don't provide GH_PAGES_PAT, the action falls back to GITHUB_TOKEN which may be
+          # restricted from pushing to the repository if GitHub's workflow permissions are set to
+          # read-only or branch protection prevents the `github-actions` bot from pushing. If you
+          # see "Permission ... denied to github-actions[bot]" and a 403, add a PAT with `repo`
+          # (and `workflow` if needed) scopes and save it as the repo secret `GH_PAGES_PAT`.
+          personal_token: ${{ secrets.GH_PAGES_PAT }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./publish
           publish_branch: gh-pages
