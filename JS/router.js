@@ -24,16 +24,10 @@ class Router {
     }
     
     init() {
-        // Check if redirected from 404.html (GitHub Pages SPA routing)
-        const urlParams = new URLSearchParams(window.location.search);
-        const redirectPath = urlParams.get('redirect');
-        
-        if (redirectPath) {
-            // Clean the URL and navigate to the redirect path
-            window.history.replaceState({}, '', redirectPath);
-            this.route(redirectPath);
-            return;
-        }
+        // NOTE: removed GitHub Pages 404 -> index redirect flow.
+        // If you deploy to a host that doesn't rewrite unknown paths to index.html,
+        // configure a rewrite (Vercel, Netlify) so direct /shop requests still serve
+        // the SPA entry. This router will now avoid relying on sessionStorage redirects.
         
         // Remove trailing slash for clean URLs
         let path = window.location.pathname;
@@ -53,9 +47,17 @@ class Router {
         
         const href = link.getAttribute('href');
         
+        // If clicking the logo, don't redirect away from current page UNLESS already on landing page
+        const _currentPath = window.location.pathname === '/' ? '/' : window.location.pathname;
+        if (link.classList && link.classList.contains('logo') && href === '/' && _currentPath !== '/') {
+            e.preventDefault();
+            return;
+        }
         // Only handle internal navigation links
         if (href && !href.startsWith('http') && !href.startsWith('#') && href.includes('/')) {
             e.preventDefault();
+            // If the link has data-no-url attribute, load the page but do NOT push/replace the URL
+            const noUrl = link.hasAttribute('data-no-url');
             // If clicking the same page, reload the page content without server request
             const currentPath = window.location.pathname === '/' ? '/' : window.location.pathname;
             if (currentPath === href) {
@@ -68,7 +70,12 @@ class Router {
                     this.loadPage(page);
                 }, 300);
             } else {
-                this.navigateTo(href);
+                if (noUrl) {
+                    // Load page content but don't change the visible URL or history
+                    this.route(href, false);
+                } else {
+                    this.navigateTo(href);
+                }
             }
         } else if (href && href.startsWith('#')) {
             // Handle anchor links with smooth scroll
