@@ -48,7 +48,9 @@ function updateAuthNav(){
 }
 
 // pagination & sort state
-let STATE = {query:'',category:'',sort:'relevance',page:1,perPage:6}
+if (typeof STATE === 'undefined') {
+  var STATE = {query:'',category:'',sort:'relevance',page:1,perPage:6};
+}
 
 function applySort(list, sort){
   if(sort==='price-asc') return list.sort((a,b)=>a.price-b.price);
@@ -402,8 +404,13 @@ if(!localStorage.getItem('mypc_admin_users')){
   ]);
 }
 
-let currentEditingId = null;
-let deleteTarget = null;
+// Guard against redeclaration when script is reloaded
+if (typeof currentEditingId === 'undefined') {
+  var currentEditingId = null;
+}
+if (typeof deleteTarget === 'undefined') {
+  var deleteTarget = null;
+}
 
 function initializeAdmin(){
   // Check if user is admin
