@@ -1,9 +1,29 @@
 // Simple product list (sample PC components) with variants
 if (typeof PRODUCTS === 'undefined') {
   window.PRODUCTS = [
-    {id: 'cpu-ryzen5', title: 'AMD Ryzen 5 5600X', category: 'CPU', price: 12995, img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22%23666%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECPU%3C/text%3E%3C/svg%3E', variants:[{label:'Boxed',priceDelta:0},{label:'OEM',priceDelta:-1200}]},
-    {id: 'cpu-intel-i5', title: 'Intel Core i5-12400F', category: 'CPU', price: 11500, img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22%23666%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECPU%3C/text%3E%3C/svg%3E', variants:[{label:'Boxed',priceDelta:0},{label:'Tray',priceDelta:-900}]},
-    {id: 'gpu-rtx3060', title: 'NVIDIA RTX 3060 12GB', category: 'GPU', price: 18999, img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22%23666%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EGPU%3C/text%3E%3C/svg%3E', variants:[{label:'Reference',priceDelta:0},{label:'OC Edition',priceDelta:1500}]},
+    {id: 'cpu-ryzen5', title: 'AMD Ryzen 5 5600X', category: 'CPU', price: 12995, img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22%23666%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECPU%3C/text%3E%3C/svg%3E',
+      description: `AMD Ryzen™ 5 5600X — 6 Cores / 12 Threads desktop processor based on the Vermeer (Zen 3) architecture. Key highlights:
+• Base Clock: 3.7 GHz, Max Boost Clock: up to 4.6 GHz
+• L2 Cache: 3 MB, L3 Cache: 32 MB
+• TDP: 65W; Socket: AM4
+• Process Technology: TSMC 7nm FinFET; Unlocked for overclocking
+• Supported Memory: DDR4 up to 3200 MT/s
+• OS Support: Windows 11 / Windows 10 / Linux (64-bit)
+
+This processor delivers strong single-threaded performance for gaming and fast multi-threaded throughput for content creation and general productivity. Included product types: Boxed (with AMD Wraith Stealth cooler) and OEM/Tray options where applicable.`,
+      reviews: [
+        {name:'Alice',rating:5,comment:'Great value and performance.'},
+        {name:'Bob',rating:4,comment:'Runs cool and fast.'},
+      ],
+      variants:[{label:'Boxed',priceDelta:0},{label:'OEM',priceDelta:-1200}]},
+    {id: 'cpu-intel-i5', title: 'Intel Core i5-12400F', category: 'CPU', price: 11500, img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22%23666%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECPU%3C/text%3E%3C/svg%3E',
+      description: 'Efficient 6-core CPU for mainstream builds. Good balance of price and performance.',
+      reviews:[{name:'Carol',rating:4,comment:'Solid performer for the price.'}],
+      variants:[{label:'Boxed',priceDelta:0},{label:'Tray',priceDelta:-900}]},
+    {id: 'gpu-rtx3060', title: 'NVIDIA RTX 3060 12GB', category: 'GPU', price: 18999, img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22%23666%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EGPU%3C/text%3E%3C/svg%3E',
+      description: '12GB VRAM, great 1080p/1440p performance and ray tracing support.',
+      reviews:[{name:'Dave',rating:5,comment:'Plays everything smoothly.'}],
+      variants:[{label:'Reference',priceDelta:0},{label:'OC Edition',priceDelta:1500}]},
     {id: 'gpu-rx6600', title: 'AMD Radeon RX 6600', category: 'GPU', price: 15999, img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22%23666%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EGPU%3C/text%3E%3C/svg%3E', variants:[{label:'Reference',priceDelta:0}]},
     {id: 'mb-b450', title: 'MSI B450 Tomahawk', category: 'Motherboard', price: 6495, img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22%23666%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EMB%3C/text%3E%3C/svg%3E', variants:[{label:'ATX',priceDelta:0}]},
     {id: 'ram-16gb', title: 'Corsair Vengeance 16GB (2x8GB) DDR4', category: 'RAM', price: 4295, img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22%23666%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ERAM%3C/text%3E%3C/svg%3E', variants:[{label:'3000MHz',priceDelta:0},{label:'3600MHz',priceDelta:400}]},
@@ -28,22 +48,116 @@ function getUserSession(){ return localStorage.getItem('mypc_user') }
 function clearUserSession(){ localStorage.removeItem('mypc_user') }
 function updateAuthNav(){
   const authNav = document.getElementById('auth-nav');
+  const authBtn = document.getElementById('auth-trigger');
   if(!authNav) return;
+  
   const user = getUserSession();
   if(user){
     // Check if user is admin
     const users = getAdminUsers ? getAdminUsers() : [];
     const isAdmin = users.some(u=>u.email===user && u.isAdmin);
-    const adminLink = isAdmin ? `<a href="/admin" style="text-decoration:none;color:#ef4444;font-weight:600">⚙️ Admin</a>` : '';
-    authNav.innerHTML = `<div style="display:flex;gap:0.5rem;align-items:center;"><span style="color:var(--text-light)">${user}</span><a href="/profile" style="text-decoration:none;color:var(--accent);font-weight:600">Profile</a>${adminLink}<button id="logout-btn" style="background:#2563eb;color:#fff;border:none;padding:0.4rem 0.8rem;border-radius:6px;cursor:pointer;font-weight:600;transition:background 0.3s">Logout</button></div>`;
+    
+    // Update modal menu with user info and links
+    const adminLink = isAdmin ? `<a href="/admin" class="auth-menu-item" style="color:#ef4444"><span class="auth-menu-icon">⚙️</span><span>Admin Dashboard</span></a>` : '';
+    authNav.innerHTML = `
+      <div class="auth-user-header">
+        <p class="user-email">${user}</p>
+      </div>
+      <a href="/profile" class="auth-menu-item">
+        <span class="auth-menu-icon">👤</span>
+        <span>Profile</span>
+      </a>
+      ${adminLink}
+      <div class="auth-divider"></div>
+      <button id="logout-btn" class="auth-menu-item" style="color:#ef4444">
+        <span class="auth-menu-icon">🚪</span>
+        <span>Logout</span>
+      </button>
+    `;
+    
+    // Update button appearance
+    if(authBtn) {
+      authBtn.style.background = 'var(--accent)';
+      authBtn.style.color = '#fff';
+      authBtn.style.borderColor = 'var(--accent)';
+    }
+    
+    // Wire up logout button
     const logoutBtn = document.getElementById('logout-btn');
     if(logoutBtn) {
-      logoutBtn.addEventListener('click', ()=>{ clearUserSession(); window.router.navigateTo('/'); });
-      logoutBtn.addEventListener('mouseover', ()=>{ logoutBtn.style.background='#1d4ed8'; });
-      logoutBtn.addEventListener('mouseout', ()=>{ logoutBtn.style.background='#2563eb'; });
+      logoutBtn.addEventListener('click', (e)=>{ 
+        e.preventDefault();
+        clearUserSession();
+        closeAuthModal();
+        window.router.navigateTo('/'); 
+      });
     }
   } else {
-    authNav.innerHTML = '<a href="/login">Login</a>';
+    authNav.innerHTML = '<a href="/login" id="login-link" class="auth-menu-item"><span class="auth-menu-icon">🔑</span><span>Login</span></a>';
+    if(authBtn) {
+      authBtn.style.background = 'var(--surface)';
+      authBtn.style.color = 'var(--text)';
+      authBtn.style.borderColor = 'var(--border)';
+    }
+  }
+}
+
+// Handle auth modal
+function setupAuthModal(){
+  const authBtn = document.getElementById('auth-trigger');
+  const modal = document.getElementById('auth-modal');
+  const backdrop = document.getElementById('auth-modal-backdrop');
+  const closeBtn = document.getElementById('auth-modal-close');
+  
+  if(!authBtn || !modal || !backdrop) return;
+  
+  // Open modal on button click
+  authBtn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    openAuthModal();
+  });
+  
+  // Close modal on close button click
+  closeBtn.addEventListener('click', closeAuthModal);
+  
+  // Close modal on backdrop click
+  backdrop.addEventListener('click', closeAuthModal);
+  
+  // Close modal when clicking on links
+  modal.querySelectorAll('a').forEach(link=>{
+    link.addEventListener('click', ()=>{
+      closeAuthModal();
+    });
+  });
+  
+  // Prevent closing when clicking inside modal
+  modal.addEventListener('click', (e)=>{
+    e.stopPropagation();
+  });
+  
+  // Close on Escape key
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') {
+      closeAuthModal();
+    }
+  });
+}
+
+function openAuthModal(){
+  const modal = document.getElementById('auth-modal');
+  const backdrop = document.getElementById('auth-modal-backdrop');
+  if(modal && backdrop) {
+    modal.classList.add('open');
+    backdrop.classList.add('open');
+  }
+}
+
+function closeAuthModal(){
+  const modal = document.getElementById('auth-modal');
+  const backdrop = document.getElementById('auth-modal-backdrop');
+  if(modal && backdrop) {
+    modal.classList.remove('open');
+    backdrop.classList.remove('open');
   }
 }
 
@@ -76,15 +190,12 @@ function renderProducts(){
   grid.innerHTML = '';
   page.items.forEach(p=>{
       const el = document.createElement('article'); el.className='product';
-      // build variant options
-      const variantOptions = (p.variants||[]).map((v,idx)=>`<option value="${idx}">${v.label}${v.priceDelta?(' ('+ (v.priceDelta>0?'+':'') + formatPHP(v.priceDelta) +')') : ''}</option>`).join('');
       el.innerHTML = `
         <img src="${p.img}" alt="${p.title}">
         <h3>${p.title}</h3>
         <div class="meta">${p.category}</div>
         <div class="price" data-base="${p.price}">${formatPHP(p.price)}</div>
         <div class="actions">
-          <select class="variant-select" data-id="${p.id}">${variantOptions}</select>
           <input type="number" class="qty-input" data-id="${p.id}" value="1" min="1">
         </div>
         <div class="actions">
@@ -138,15 +249,14 @@ function renderCartItems(){
   cart.forEach(ci=>{
     const prod = PRODUCTS.find(p=>p.id===ci.id);
     if(!prod) return;
-    const variant = (prod.variants && prod.variants[ci.variant])? prod.variants[ci.variant] : null;
-    const unitPrice = prod.price + (variant?variant.priceDelta:0);
+    const unitPrice = prod.price;
     total += unitPrice * ci.qty;
     const row = document.createElement('div'); row.className='cart-item';
     row.innerHTML = `
       <img src="${prod.img}" alt="${prod.title}">
       <div style="flex:1">
         <div>${prod.title}</div>
-        <div style="color:#666">${formatPHP(unitPrice)} x ${ci.qty} <span style="color:var(--muted);font-size:.85rem">${variant?('• '+variant.label):''}</span></div>
+        <div style="color:#666">${formatPHP(unitPrice)} x ${ci.qty}</div>
       </div>
       <div style="text-align:right">
         <button class="btn" data-id="${ci.id}" data-action="dec">-</button>
@@ -161,11 +271,9 @@ function renderCartItems(){
 
 function addToCart(id, qty=1){
   const cart = loadCart();
-  // consider variant & qty from UI
-  const variantSelect = document.querySelector(`.variant-select[data-id="${id}"]`);
-  const variant = variantSelect ? parseInt(variantSelect.value||0,10) : 0;
-  const idx = cart.findIndex(i=>i.id===id && (i.variant||0)===variant);
-  if(idx>=0) cart[idx].qty += qty; else cart.push({id,qty,variant});
+  // Add to cart without variant
+  const idx = cart.findIndex(i=>i.id===id);
+  if(idx>=0) cart[idx].qty += qty; else cart.push({id,qty});
   saveCart(cart); updateCartCount();
   
   // Add animation feedback
@@ -249,19 +357,14 @@ document.addEventListener('click', e=>{
   if(action==='inc') changeQty(id,1);
   if(action==='dec') changeQty(id,-1);
   if(action==='rem') removeFromCart(id);
-  if(action==='view') alert('Product details:\n'+id);
-});
-
-// delegate variant/qty changes to update displayed price
-document.addEventListener('change', e=>{
-  const sel = e.target;
-  if(sel.matches('.variant-select')){
-    const id = sel.getAttribute('data-id');
-    const prod = PRODUCTS.find(p=>p.id===id);
-    if(!prod) return;
-    const base = prod.price; const variant = prod.variants && prod.variants[parseInt(sel.value,10)];
-    const priceEl = sel.closest('.product').querySelector('.price');
-    if(priceEl) priceEl.textContent = formatPHP(base + (variant?variant.priceDelta:0));
+  if(action==='view') {
+    // Navigate to product detail page
+    if(window.router && typeof window.router.navigateTo === 'function'){
+      window.router.navigateTo('/product/' + id);
+    } else {
+      // Fallback: show alert
+      alert('Product details:\n'+id);
+    }
   }
 });
 
@@ -283,8 +386,7 @@ function renderCheckoutItems(){
   cart.forEach(ci=>{
     const prod = PRODUCTS.find(p=>p.id===ci.id);
     if(!prod) return;
-    const variant = (prod.variants && prod.variants[ci.variant])? prod.variants[ci.variant] : null;
-    const unitPrice = prod.price + (variant?variant.priceDelta:0);
+    const unitPrice = prod.price;
     total += unitPrice * ci.qty;
     const row = document.createElement('div'); row.className='checkout-item';
     row.innerHTML = `
@@ -292,7 +394,6 @@ function renderCheckoutItems(){
       <div class="checkout-item-info">
         <p><strong>${prod.title}</strong></p>
         <p>${formatPHP(unitPrice)} x ${ci.qty}</p>
-        ${variant?'<p style="font-size:0.85rem;color:#666">'+variant.label+'</p>':''}
       </div>
       <div style="text-align:right"><strong>${formatPHP(unitPrice * ci.qty)}</strong></div>
     `;
@@ -305,6 +406,7 @@ function renderCheckoutItems(){
 function initializePageScript(){
   // Update auth nav (always do this first, regardless of page)
   updateAuthNav();
+  setupAuthModal();
   
   // Check if this is admin page
   if(document.getElementById('users-tab')){
@@ -314,6 +416,58 @@ function initializePageScript(){
   
   // Only initialize products-related elements if we have the products array
   if(!window.PRODUCTS) return;
+
+  // If this is a product detail page, render the product info
+  if(window.CURRENT_PRODUCT_ID){
+    const pid = window.CURRENT_PRODUCT_ID;
+    const prod = PRODUCTS.find(p=>p.id===pid);
+    if(prod){
+      const img = document.getElementById('prod-img'); if(img){ img.src = prod.img; img.alt = prod.title }
+      const title = document.getElementById('prod-title'); if(title) title.textContent = prod.title;
+      const cat = document.getElementById('prod-category'); if(cat) cat.textContent = prod.category;
+      const priceEl = document.getElementById('prod-price'); if(priceEl) priceEl.textContent = formatPHP(prod.price);
+      const desc = document.getElementById('prod-desc'); if(desc) desc.textContent = prod.description || 'High quality component.';
+
+  // Wire add/buy buttons
+      const qtyEl = document.getElementById('prod-qty');
+      const addBtn = document.getElementById('prod-add');
+      const buyBtn = document.getElementById('prod-buy');
+      if(addBtn){ addBtn.addEventListener('click', ()=>{
+        const q = qtyEl?parseInt(qtyEl.value,10)||1:1;
+        addToCart(prod.id, q);
+      }); }
+      if(buyBtn){ buyBtn.addEventListener('click', ()=>{
+        const q = qtyEl?parseInt(qtyEl.value,10)||1:1;
+        addToCart(prod.id, q);
+        updateCartCount(); window.router.navigateTo('/checkout');
+      }); }
+      // Render reviews
+      const reviewsEl = document.getElementById('prod-reviews');
+      const ratingEl = document.getElementById('prod-rating');
+      if(reviewsEl){
+        const reviews = prod.reviews || [];
+        if(reviews.length===0){ reviewsEl.innerHTML = '<div style="color:var(--text-light)">No reviews yet.</div>'; if(ratingEl) ratingEl.textContent=''; }
+        else {
+          const avg = (reviews.reduce((s,r)=>s+(r.rating||0),0) / reviews.length).toFixed(1);
+          if(ratingEl) ratingEl.textContent = `${avg} ★ (${reviews.length})`;
+          reviewsEl.innerHTML = reviews.map(r=>`<div class="review"><div style="font-weight:600">${r.name} <span style="color:var(--text-light);font-weight:400">• ${r.rating}★</span></div><div style="color:var(--text-light);margin-top:.25rem">${r.comment}</div></div>`).join('<hr style="border:none;border-top:1px solid var(--border);margin:.75rem 0">');
+        }
+      }
+      // Render specifications
+      const specsEl = document.getElementById('prod-specs');
+      if(specsEl){
+        const specsHtml = `
+          <div class="spec-list">
+            <div class="spec-item"><strong>Product ID</strong><div>${prod.id}</div></div>
+            <div class="spec-item"><strong>Category</strong><div>${prod.category}</div></div>
+            <div class="spec-item"><strong>Price</strong><div>${formatPHP(prod.price)}</div></div>
+            <div class="spec-item" style="grid-column:1 / -1"><strong>Description</strong><div style="color:var(--text-light);margin-top:.25rem">${prod.description || 'No description available.'}</div></div>
+          </div>
+        `;
+        specsEl.innerHTML = specsHtml;
+      }
+    }
+  }
   
   // populate categories
   const cats = Array.from(new Set(window.PRODUCTS.map(p=>p.category))).sort();
@@ -380,6 +534,42 @@ function initializePageScript(){
       if(newPass && newPass!==confirmPass){ addError(editForm.querySelector('#confirm-password'),'Passwords do not match'); return; }
       alert('Profile updated successfully (demo).'); 
     });
+  }
+
+  // Order sorting functionality
+  const orderSortDate = document.getElementById('order-sort-date');
+  const orderSortStatus = document.getElementById('order-sort-status');
+  if(orderSortDate || orderSortStatus){
+    function sortOrders(){
+      const ordersList = document.getElementById('orders-list');
+      if(!ordersList) return;
+      const orders = Array.from(ordersList.querySelectorAll('.order-card'));
+      const dateSort = orderSortDate ? orderSortDate.value : 'newest';
+      const statusFilter = orderSortStatus ? orderSortStatus.value : 'all';
+      
+      // Filter by status
+      let filtered = orders;
+      if(statusFilter !== 'all'){
+        filtered = orders.filter(order => {
+          const status = order.getAttribute('data-order-status');
+          return status === statusFilter;
+        });
+      }
+      
+      // Sort by date
+      filtered.sort((a, b) => {
+        const dateA = new Date(a.getAttribute('data-order-date'));
+        const dateB = new Date(b.getAttribute('data-order-date'));
+        return dateSort === 'newest' ? dateB - dateA : dateA - dateB;
+      });
+      
+      // Clear and re-append sorted orders
+      ordersList.innerHTML = '';
+      filtered.forEach(order => ordersList.appendChild(order));
+    }
+    
+    if(orderSortDate) orderSortDate.addEventListener('change', sortOrders);
+    if(orderSortStatus) orderSortStatus.addEventListener('change', sortOrders);
   }
 }
 
@@ -576,9 +766,6 @@ function saveProduct(e){
   const title = document.getElementById('product-title').value.trim();
   const category = document.getElementById('product-category').value.trim();
   const price = parseInt(document.getElementById('product-price').value);
-  let variants = [];
-  try { variants = JSON.parse(document.getElementById('product-variants').value); }
-  catch(e) { alert('Invalid JSON format for variants'); return; }
   
   if(!title || !category || !price) { alert('Title, category, and price are required'); return; }
   
@@ -586,7 +773,7 @@ function saveProduct(e){
   if(currentEditingId===null){
     const newProduct = {
       id: 'custom-'+(Math.max(...products.filter(p=>p.id.toString().startsWith('custom-')).map(p=>parseInt(p.id.split('-')[1])||0), 0)+1),
-      title, category, price, variants: variants, img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22%23666%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EPRODUCT%3C/text%3E%3C/svg%3E'
+      title, category, price, img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22%23666%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EPRODUCT%3C/text%3E%3C/svg%3E'
     };
     products.push(newProduct);
     alert('Product added successfully!');
@@ -594,7 +781,6 @@ function saveProduct(e){
     products[currentEditingId].title = title;
     products[currentEditingId].category = category;
     products[currentEditingId].price = price;
-    products[currentEditingId].variants = variants;
     alert('Product updated successfully!');
   }
   saveAdminProducts(products);
@@ -679,6 +865,21 @@ function filterAdminProducts(){
 // ============= END ADMIN FUNCTIONS =============
 
 
+
+// Collapsible sections for product page
+window.toggleCollapse = function(sectionId){
+  const bodyId = sectionId === 'reviews-card' ? 'reviews-card-body' : 'specs-card-body';
+  const iconId = sectionId === 'reviews-card' ? 'reviews-icon' : 'specs-icon';
+  const body = document.getElementById(bodyId);
+  const icon = document.getElementById(iconId);
+  if(!body || !icon) return;
+  
+  const isCollapsed = body.style.display === 'none';
+  body.style.display = isCollapsed ? 'block' : 'none';
+  body.style.transition = 'all 0.3s ease';
+  icon.textContent = isCollapsed ? '▼' : '▶';
+  icon.style.transition = 'transform 0.3s ease';
+}
 
 function validateEmail(v){ return !!v && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) }
 function addError(el,msg){ const e=document.createElement('div'); e.className='error'; e.textContent=msg; el.parentNode.insertBefore(e, el.nextSibling) }

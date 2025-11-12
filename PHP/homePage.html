@@ -2,12 +2,21 @@
     <div class="container header-inner">
         <a class="logo" href="/">MyPC</a>
         <nav class="main-nav">
-            <a href="/shop">Shop</a>
-            <div id="auth-nav" style="display:flex;gap:1rem;align-items:center;">
-                <a href="/login" id="login-link">Login</a>
-            </div>
-            <button id="cart-toggle" class="cart-btn">Cart (<span id="cart-count">0</span>)</button>
+            <a href="/shop" class="nav-link">Shop</a>
         </nav>
+        <div class="header-right">
+            <button id="cart-toggle" class="cart-btn" title="Shopping Cart">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-label">Cart</span>
+                <span id="cart-count" class="cart-badge">0</span>
+            </button>
+            <div class="auth-menu">
+                <button class="auth-btn" id="auth-trigger" title="Account">
+                    <span class="user-icon">👤</span>
+                    <span class="auth-label">Account</span>
+                </button>
+            </div>
+        </div>
     </div>
 </header>
 
@@ -47,6 +56,21 @@
             <button id="checkout-btn" class="primary">Checkout</button>
         </div>
     </aside>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal-backdrop" id="auth-modal-backdrop"></div>
+    <div class="auth-modal" id="auth-modal">
+        <div class="auth-modal-header">
+            <h2>Account</h2>
+            <button class="auth-modal-close" id="auth-modal-close">✕</button>
+        </div>
+        <div class="auth-modal-body" id="auth-nav">
+            <a href="/login" id="login-link" class="auth-menu-item">
+                <span class="auth-menu-icon">🔑</span>
+                <span>Login</span>
+            </a>
+        </div>
+    </div>
 
     <footer class="site-footer">
         <div class="container">© MyPC — Premium PC Component Store</div>

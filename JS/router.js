@@ -19,8 +19,13 @@ class Router {
         // Intercept all link clicks
         document.addEventListener('click', (e) => this.handleLinkClick(e));
         
-        // Handle initial route
-        this.init();
+    // Compute base root to use for fetch and script URLs so app works on nested routes
+    // and when opened via file:// (fallback to directory of the file)
+    const originAvailable = window.location && window.location.origin && window.location.origin !== 'null';
+    const originOrHref = originAvailable ? window.location.origin : window.location.href.replace(/\/[^\/]*$/, '');
+    this.baseRoot = String(originOrHref).replace(/\/$/, '');
+    // Handle initial route
+    this.init();
     }
     
     init() {
@@ -113,7 +118,15 @@ class Router {
             path = path.replace('/index.html', '') || '/';
         }
         
-        const page = this.pages[path] || 'landing';
+        // Support dynamic product routes: /product/:id
+        let page = this.pages[path] || 'landing';
+        // reset current product id
+        window.CURRENT_PRODUCT_ID = null;
+        const prodMatch = path.match(/^\/product\/([\w-]+)$/);
+        if (prodMatch) {
+            page = 'product';
+            window.CURRENT_PRODUCT_ID = prodMatch[1];
+        }
         
         if (this.currentPage === page) return;
         
@@ -131,8 +144,8 @@ class Router {
     loadPage(page) {
         const app = document.getElementById('app');
         
-        // Load HTML content from PHP folder
-        fetch(`PHP/${page}Page.html`)
+    // Load HTML content from PHP folder (use baseRoot so fetch works on nested routes and file://)
+    fetch(this.baseRoot + `/PHP/${page}Page.html`)
             .then(response => {
                 if (!response.ok) throw new Error(`Failed to load ${page}Page.html`);
                 return response.text();
@@ -156,7 +169,8 @@ class Router {
                     'signup': 'Sign Up - MyPC',
                     'checkout': 'Checkout - MyPC',
                     'profile': 'My Profile - MyPC',
-                    'admin': 'Admin Dashboard - MyPC'
+                    'admin': 'Admin Dashboard - MyPC',
+                    'product': 'Product - MyPC'
                 };
                 document.title = title[page] || 'MyPC';
             })
@@ -171,8 +185,9 @@ class Router {
         document.querySelectorAll('script[data-page]').forEach(script => script.remove());
         
         // Always load script.js first for all pages (it handles user session and auth nav)
-        const script = document.createElement('script');
-        script.src = 'JS/script.js?v=' + Date.now();
+    const script = document.createElement('script');
+    // Use baseRoot so scripts resolve correctly when on nested routes or file://
+    script.src = this.baseRoot + '/JS/script.js?v=' + Date.now();
         script.dataset.page = page;
         script.defer = false;
         script.onload = () => {
@@ -192,7 +207,7 @@ class Router {
         // Reload page transition handler after a small delay to ensure DOM is ready
         setTimeout(() => {
             const transitionScript = document.createElement('script');
-            transitionScript.src = 'JS/pageTransition.js?v=' + Date.now();
+            transitionScript.src = this.baseRoot + '/JS/pageTransition.js?v=' + Date.now();
             transitionScript.dataset.page = page;
             transitionScript.defer = false;
             document.body.appendChild(transitionScript);

@@ -53,10 +53,6 @@
                         <p class="stat-number">₱156,499</p>
                     </div>
                     <div class="stat-box">
-                        <h3>Loyalty Points</h3>
-                        <p class="stat-number">1,564</p>
-                    </div>
-                    <div class="stat-box">
                         <h3>Account Status</h3>
                         <p class="stat-number" style="color: #28a745;">Active</p>
                     </div>
@@ -127,9 +123,27 @@
 
             <!-- Orders Section -->
             <section id="orders" class="profile-section">
-                <h1>My Orders</h1>
-                <div class="orders-list">
-                    <div class="order-card">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+                    <h1 style="margin:0;">My Orders</h1>
+                    <div style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;">
+                        <label style="font-size:0.9rem;color:var(--text-light);display:flex;align-items:center;gap:0.5rem;">
+                            Sort by:
+                            <select id="order-sort-date" class="variant-select" style="padding:0.5rem 0.75rem;">
+                                <option value="newest">Date: Newest First</option>
+                                <option value="oldest">Date: Oldest First</option>
+                            </select>
+                        </label>
+                        <select id="order-sort-status" class="variant-select" style="padding:0.5rem 0.75rem;">
+                            <option value="all">All Status</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="In Transit">In Transit</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="orders-list" id="orders-list">
+                    <div class="order-card" data-order-date="2024-11-05" data-order-status="Delivered">
                         <div class="order-header">
                             <span class="order-id">Order #12345</span>
                             <span class="order-status" style="color: #28a745;">Delivered</span>
@@ -145,7 +159,7 @@
                         </div>
                     </div>
 
-                    <div class="order-card">
+                    <div class="order-card" data-order-date="2024-11-03" data-order-status="In Transit">
                         <div class="order-header">
                             <span class="order-id">Order #12344</span>
                             <span class="order-status" style="color: #ff9800;">In Transit</span>
@@ -160,7 +174,7 @@
                         </div>
                     </div>
 
-                    <div class="order-card">
+                    <div class="order-card" data-order-date="2024-10-28" data-order-status="Delivered">
                         <div class="order-header">
                             <span class="order-id">Order #12343</span>
                             <span class="order-status" style="color: #28a745;">Delivered</span>
@@ -220,28 +234,6 @@
                         <div>
                             <h3>Email Notifications</h3>
                             <p>Receive updates about your orders</p>
-                        </div>
-                        <label class="toggle">
-                            <input type="checkbox" checked>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="setting-item">
-                        <div>
-                            <h3>Newsletter</h3>
-                            <p>Get exclusive deals and product updates</p>
-                        </div>
-                        <label class="toggle">
-                            <input type="checkbox">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="setting-item">
-                        <div>
-                            <h3>SMS Notifications</h3>
-                            <p>Receive delivery updates via SMS</p>
                         </div>
                         <label class="toggle">
                             <input type="checkbox" checked>

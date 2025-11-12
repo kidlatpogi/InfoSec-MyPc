@@ -2,12 +2,17 @@
     <div class="container header-inner">
         <a class="logo" href="/">MyPC</a>
         <nav class="main-nav">
-            <a href="#features">Features</a>
-            <a href="/shop">Shop</a>
-            <div id="auth-nav" style="display:flex;gap:1rem;align-items:center;">
-                <a href="/login" id="login-link">Login</a>
-            </div>
+            <a href="#features" class="nav-link">Features</a>
+            <a href="/shop" class="nav-link">Shop</a>
         </nav>
+        <div class="header-right">
+            <div class="auth-menu">
+                <button class="auth-btn" id="auth-trigger" title="Account">
+                    <span class="user-icon">👤</span>
+                    <span class="auth-label">Account</span>
+                </button>
+            </div>
+        </div>
     </div>
 </header>
 
@@ -86,18 +91,18 @@
         <div class="testimonials-grid">
             <div class="testimonial-card">
                 <p class="testimonial-text">"MyPC made it incredibly easy to find the perfect components for my gaming setup. Highly recommend!"</p>
-                <div class="testimonial-author">Alex Rivera</div>
-                <div class="testimonial-role">Gaming Enthusiast</div>
+                <div class="testimonial-author">Aldrin Louie Rivera</div>
+                <div class="testimonial-role">PC Enthusiast</div>
             </div>
             <div class="testimonial-card">
                 <p class="testimonial-text">"Excellent prices and super fast delivery. My order arrived within 2 days. Best online store!"</p>
-                <div class="testimonial-author">Sarah Johnson</div>
-                <div class="testimonial-role">Content Creator</div>
+                <div class="testimonial-author">Kenneth Raper</div>
+                <div class="testimonial-role">Holy Yapper</div>
             </div>
             <div class="testimonial-card">
                 <p class="testimonial-text">"The customer support team helped me choose components that fit my budget perfectly. Great experience!"</p>
-                <div class="testimonial-author">Mike Chen</div>
-                <div class="testimonial-role">PC Builder</div>
+                <div class="testimonial-author">Jensen Manalo</div>
+                <div class="testimonial-role">Simpleng Tao</div>
             </div>
         </div>
     </section>
@@ -108,6 +113,21 @@
         <p>Browse our collection of premium PC components and start building your perfect system today</p>
         <a class="primary" href="/shop">Shop Now</a>
 </section>
+
+<!-- Auth Modal -->
+<div class="auth-modal-backdrop" id="auth-modal-backdrop"></div>
+<div class="auth-modal" id="auth-modal">
+    <div class="auth-modal-header">
+        <h2>Account</h2>
+        <button class="auth-modal-close" id="auth-modal-close">✕</button>
+    </div>
+    <div class="auth-modal-body" id="auth-nav">
+        <a href="/login" id="login-link" class="auth-menu-item">
+            <span class="auth-menu-icon">🔑</span>
+            <span>Login</span>
+        </a>
+    </div>
+</div>
 
 <footer class="site-footer">
     <div class="container">© 2024 MyPC — Premium PC Component Store. All rights reserved.</div>
