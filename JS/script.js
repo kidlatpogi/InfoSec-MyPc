@@ -1405,8 +1405,6 @@ function initializeSuperAdmin(){
 
 // ============= END ADMIN FUNCTIONS =============
 
-
-
 function validateEmail(v){ return !!v && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) }
 function addError(el,msg){ const e=document.createElement('div'); e.className='error'; e.textContent=msg; el.parentNode.insertBefore(e, el.nextSibling) }
 function removeErrors(form){ Array.from(form.querySelectorAll('.error')).forEach(e=>e.remove()) }

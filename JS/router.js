@@ -1,5 +1,3 @@
-/* Router - Handles all page navigation and clean URLs */
-
 class Router {
     constructor() {
         this.currentPage = null;
@@ -14,29 +12,17 @@ class Router {
             '/employee': 'employee',
             '/superadmin': 'superadmin'
         };
-        
-        // Store original history state for back button
+
         window.addEventListener('popstate', (e) => this.handleRouteChange(e));
-        
-        // Intercept all link clicks
         document.addEventListener('click', (e) => this.handleLinkClick(e));
-        
-    // Compute base root to use for fetch and script URLs so app works on nested routes
-    // and when opened via file:// (fallback to directory of the file)
+
     const originAvailable = window.location && window.location.origin && window.location.origin !== 'null';
     const originOrHref = originAvailable ? window.location.origin : window.location.href.replace(/\/[^\/]*$/, '');
     this.baseRoot = String(originOrHref).replace(/\/$/, '');
-    // Handle initial route
     this.init();
     }
     
     init() {
-        // NOTE: removed GitHub Pages 404 -> index redirect flow.
-        // If you deploy to a host that doesn't rewrite unknown paths to index.html,
-        // configure a rewrite (Vercel, Netlify) so direct /shop requests still serve
-        // the SPA entry. This router will now avoid relying on sessionStorage redirects.
-        
-        // Remove trailing slash for clean URLs
         let path = window.location.pathname;
         if (path.endsWith('/index.html')) {
             path = path.replace('/index.html', '') || '/';
@@ -54,21 +40,16 @@ class Router {
         
         const href = link.getAttribute('href');
         
-        // If clicking the logo, don't redirect away from current page UNLESS already on landing page
         const _currentPath = window.location.pathname === '/' ? '/' : window.location.pathname;
         if (link.classList && link.classList.contains('logo') && href === '/' && _currentPath !== '/') {
             e.preventDefault();
             return;
         }
-        // Only handle internal navigation links
         if (href && !href.startsWith('http') && !href.startsWith('#') && href.includes('/')) {
             e.preventDefault();
-            // If the link has data-no-url attribute, load the page but do NOT push/replace the URL
             const noUrl = link.hasAttribute('data-no-url');
-            // If clicking the same page, reload the page content without server request
             const currentPath = window.location.pathname === '/' ? '/' : window.location.pathname;
             if (currentPath === href) {
-                // Reload page content without making server request
                 const page = this.pages[href] || 'landing';
                 const app = document.getElementById('app');
                 app.style.opacity = '0';
@@ -78,14 +59,12 @@ class Router {
                 }, 300);
             } else {
                 if (noUrl) {
-                    // Load page content but don't change the visible URL or history
                     this.route(href, false);
                 } else {
                     this.navigateTo(href);
                 }
             }
         } else if (href && href.startsWith('#')) {
-            // Handle anchor links with smooth scroll
             e.preventDefault();
             const elementId = href.slice(1);
             const element = document.getElementById(elementId);
@@ -103,26 +82,21 @@ class Router {
     }
     
     navigateTo(path) {
-        // Add page exit animation
         const app = document.getElementById('app');
         app.style.opacity = '0';
         app.style.transition = 'opacity 0.3s ease-out';
         
-        // After animation, load new page
         setTimeout(() => {
             this.route(path, true);
         }, 300);
     }
     
     route(path, pushState = true) {
-        // Normalize path
         if (path.endsWith('/index.html')) {
             path = path.replace('/index.html', '') || '/';
         }
         
-        // Support dynamic product routes: /product/:id
         let page = this.pages[path] || 'landing';
-        // reset current product id
         window.CURRENT_PRODUCT_ID = null;
         const prodMatch = path.match(/^\/product\/([\w-]+)$/);
         if (prodMatch) {
@@ -134,33 +108,27 @@ class Router {
         
         this.currentPage = page;
         
-        // Push state to history
         if (pushState && path !== window.location.pathname) {
             window.history.pushState({ path }, '', path === '/' ? '/' : path);
         }
         
-        // Load and render page
         this.loadPage(page);
     }
     
     loadPage(page) {
         const app = document.getElementById('app');
         
-    // Load HTML content from PHP folder (use baseRoot so fetch works on nested routes and file://)
     fetch(this.baseRoot + `/PHP/${page}Page.html`)
             .then(response => {
                 if (!response.ok) throw new Error(`Failed to load ${page}Page.html`);
                 return response.text();
             })
             .then(html => {
-                // Pages are stored without body tags - just use the content directly
                 app.innerHTML = html;
                 
-                // Add entrance animation
                 app.style.opacity = '1';
                 app.style.transition = 'opacity 0.3s ease-out';
                 
-                // Reload scripts specific to this page
                 this.reloadPageScripts(page);
                 
                 // Update page title
@@ -185,21 +153,16 @@ class Router {
     }
     
     reloadPageScripts(page) {
-        // Remove old scripts except router
         document.querySelectorAll('script[data-page]').forEach(script => script.remove());
         
-        // Always load script.js first for all pages (it handles user session and auth nav)
     const script = document.createElement('script');
-    // Use baseRoot so scripts resolve correctly when on nested routes or file://
     script.src = this.baseRoot + '/JS/script.js?v=' + Date.now();
         script.dataset.page = page;
         script.defer = false;
         script.onload = () => {
-            // Call initialization after script loads
             if (window.initializePageScript) {
                 window.initializePageScript();
             }
-            // Ensure updateAuthNav is called after initialization
             setTimeout(() => {
                 if (window.updateAuthNav) {
                     window.updateAuthNav();
@@ -208,7 +171,6 @@ class Router {
         };
         document.body.appendChild(script);
         
-        // Reload page transition handler after a small delay to ensure DOM is ready
         setTimeout(() => {
             const transitionScript = document.createElement('script');
             transitionScript.src = this.baseRoot + '/JS/pageTransition.js?v=' + Date.now();
@@ -219,7 +181,6 @@ class Router {
     }
 }
 
-// Initialize router when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         window.router = new Router();
